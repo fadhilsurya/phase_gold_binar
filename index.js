@@ -22,11 +22,15 @@ class Manager extends Employee {
         this.maxAge = maxAge
     }
 
-    greetings(name, salaryNom) {
-        return `welcome bapak ${name} ${this.salary(salaryNom)}, you're currently work for ${this.perusahaan}`
+    // this is a private method
+    #ngobrol() {
+        return `ngobrolnya berdua sama temen kerjanya aja nih`
     }
 
-
+    greetings(name, salaryNom) {
+        console.log(this.#ngobrol())
+        return `welcome bapak ${name} ${this.salary(salaryNom)}, you're currently work for ${this.perusahaan}`
+    }
 }
 
 const kendaraan = {
@@ -43,4 +47,4 @@ let manager = new Manager('Binar', 'Mandiri', 50)
 
 
 console.log(manager.greetings('fadhil', 100000))
-console.log(kendaraan['transmisi'])
+    / s// console.log(kendaraan['transmisi'])
