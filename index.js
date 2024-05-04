@@ -9,6 +9,8 @@ require('dotenv').config()
 
 const port = process.env.PORT || 3000
 
+app.set('view engine', 'ejs')
+
 app.get('/ping', (req, res) => {
     try {
         res.status(200).json({
@@ -23,6 +25,11 @@ app.get('/ping', (req, res) => {
         })
     }
 })
+
+app.use(express.json())
+app.use(express.urlencoded({
+    extended: false
+}))
 
 app.use('/', router)
 
