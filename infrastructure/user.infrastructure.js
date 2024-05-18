@@ -1,9 +1,10 @@
 const { User } = require('../models/index')
 
+
+
+// Create
 async function Create(req) {
-
     try {
-
         let data = await User.create(req)
 
         return data
@@ -11,11 +12,59 @@ async function Create(req) {
     } catch (error) {
 
         return error
-
     }
-
 }
 
+// Read / Get
+async function GetAll(req) {
+    try {
+        let data = await User.findAll({
+            attributes: {
+                exclude: [
+                    'id',
+                    'password',
+                    'updatedAt',
+                    'deletedAt'
+                ]
+            }
+        })
+
+        return data
+
+    } catch (error) {
+
+        return error
+    }
+}
+
+async function GetById(id) {
+    try {
+        let data = await User.findOne({
+            where: {
+                id
+            },
+            attributes: {
+                exclude: [
+                    'id',
+                    'password',
+                    'updatedAt',
+                    'deletedAt'
+                ]
+            }
+
+        })
+        return data
+
+    } catch (error) {
+        return error
+    }
+}
+
+
+
+
 module.exports = {
-    Create
+    Create,
+    GetAll,
+    GetById
 }
