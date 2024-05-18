@@ -60,11 +60,44 @@ async function GetById(id) {
     }
 }
 
+async function Update(id, isActive) {
+    try {
+        let data = await User.update({ is_active: isActive }, {
+            where: {
+                id
+            }
+        })
+        return data
+
+    } catch (error) {
+        return error
+    }
+}
+
+async function Delete(id) {
+    try {
+        let data = await User.update({ deletedAt: new Date() }, {
+            where: {
+                id
+            }
+        })
+
+        return data
+
+    } catch (error) {
+        return error
+    }
+}
+
+
+
 
 
 
 module.exports = {
     Create,
     GetAll,
-    GetById
+    GetById,
+    Update,
+    Delete
 }

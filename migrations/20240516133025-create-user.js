@@ -55,7 +55,8 @@ module.exports = {
         defaultValue: Sequelize.NOW
       },
       deletedAt: {
-        type: Sequelize.DATEONLY
+        type: Sequelize.DATEONLY,
+        allowNull: true
       }
     });
   },

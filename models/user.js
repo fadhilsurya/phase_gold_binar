@@ -58,14 +58,12 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATEONLY,
       defaultValue: DataTypes.NOW
     },
-    deletedAt: {
-      type: DataTypes.DATEONLY,
-      defaultValue: DataTypes.NOW
-    }
 
   }, {
     sequelize,
     modelName: 'User',
+    paranoid: true,
+    deletedAt: 'deletedAt'
   });
   return User;
 };

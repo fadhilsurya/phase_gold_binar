@@ -1,4 +1,6 @@
-const { Create, GetAll, GetById } = require('../infrastructure/user.infrastructure')
+const { Create, GetAll, GetById,
+    Update, Delete
+} = require('../infrastructure/user.infrastructure')
 class User {
 
     async createUser(req) {
@@ -21,7 +23,8 @@ class User {
                 createdAt: now
             }
 
-            if (req.gender !== 'male' || req.gender !== 'female') {
+
+            if (req.gender != 'male' && req.gender != 'female') {
                 let err = new Error('bad request').message
 
                 resp.data = null
@@ -139,8 +142,56 @@ class User {
         }
     }
 
+    async update(id, req) {
+        let resp = {}
+        try {
+            let data = await Update(id, req.is_active)
+
+            resp.data = data
+            resp.status = 200
+            resp.error = null
+            resp.message = 'successful'
+
+            return resp
+
+
+        } catch (error) {
+
+            resp.data = null
+            resp.status = 500
+            resp.error = error
+            resp.message = error.message
+            return resp
+        }
+    }
+
+    async deleteRecords(id) {
+        let resp = {}
+        try {
+            console.log(id)
+            let data = await Delete(id)
+
+            resp.data = data
+            resp.status = 200
+            resp.error = null
+            resp.message = 'successful'
+
+            return resp
+
+
+        } catch (error) {
+
+            resp.data = null
+            resp.status = 500
+            resp.error = error
+            resp.message = error.message
+            return resp
+
+        }
+
+
+    }
+
 }
-
-
 
 module.exports = User
