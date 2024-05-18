@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
+const { Create } = require('../../handler/user.handler')
 
-// router.use('/user',)
-
+router.post('/register', Create)
 
 module.exports = router
