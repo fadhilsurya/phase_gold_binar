@@ -1,4 +1,4 @@
-const { User } = require('../models/index')
+const { User, Order } = require('../models/index')
 
 
 
@@ -19,6 +19,11 @@ async function Create(req) {
 async function GetAll(req) {
     try {
         let data = await User.findAll({
+            include: {
+                model: Order,
+                as: 'order',
+                required: true
+            },
             attributes: {
                 exclude: [
                     'id',
